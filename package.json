@@ -1,0 +1,12 @@
+{
+  "name": "ui-kit",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "sass --load-path=src/scss --watch src/scss/uikit.scss dist/css/uikit.css",
+    "build": "sass --load-path=src/scss src/scss/uikit.scss dist/css/uikit.css --style=compressed"
+  },
+  "devDependencies": {
+    "sass": "^1.93.3"
+  }
+}

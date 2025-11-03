@@ -1,0 +1,58 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.control {
+    display: flex;
+    align-items: center;
+    gap: $space-2;
+    cursor: pointer;
+}
+
+.control__input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.control__box {
+    width: 18px;
+    height: 18px;
+    border: 1px solid $color-border;
+    border-radius: 4px;
+    display: inline-grid;
+    place-items: center;
+    background: $color-surface;
+}
+
+.control__dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+    background: transparent;
+    transition: background .15s ease;
+}
+
+.control__label {
+    color: $color-text;
+}
+
+
+.control__input[type="checkbox"]:checked+.control__box .control__dot {
+    background: $primary-500;
+}
+
+
+.control--radio .control__box {
+    border-radius: 50%;
+}
+
+.control--radio .control__dot {
+    border-radius: 50%;
+}
+
+
+.control__input:focus-visible+.control__box {
+    outline: 2px solid rgba($primary-500, .6);
+    outline-offset: 2px;
+}

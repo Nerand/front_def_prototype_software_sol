@@ -1,0 +1,57 @@
+// .field — обёртка поля             .input — сам инпут              модификатор .input--error
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.field {
+    display: grid;
+    gap: $space-2;
+}
+
+.field__label {
+    color: $color-muted;
+    font-size: .9rem;
+}
+
+.field__message {
+    font-size: .85rem;
+    color: $danger-500;
+}
+
+
+.input-wrapper {
+    position: relative;
+}
+
+.input {
+    width: 100%;
+    background: $color-surface;
+    color: $color-text;
+    border: 1px solid $color-border;
+    border-radius: $radius-md;
+    padding: .625rem .875rem;
+    transition: border-color .15s ease, box-shadow .15s ease;
+
+
+    &:focus {
+        border-color: $primary-500;
+        box-shadow: 0 0 0 3px rgba($primary-500, .2);
+    }
+
+    &--error {
+        border-color: $danger-500;
+        box-shadow: 0 0 0 3px rgba($danger-500, .2);
+    }
+
+    &--with-icon {
+        padding-left: 2.25rem;
+    }
+}
+
+
+.input__icon {
+    position: absolute;
+    inset-inline-start: .625rem;
+    inset-block-start: 50%;
+    transform: translateY(-50%);
+    opacity: .8;
+}

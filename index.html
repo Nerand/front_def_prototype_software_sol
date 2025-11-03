@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>UI Kit — Документация</title>
+  <link rel="stylesheet" href="dist/css/uikit.css" />
+</head>
+<body>
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="container navbar__inner">
+      <a class="navbar__brand" href="#">UI Kit</a>
+
+      <button
+        class="navbar__toggle"
+        data-nav-toggle
+        aria-controls="nav-menu"
+        aria-expanded="false"
+        aria-label="Открыть меню"
+      >
+        <span class="navbar__burger" aria-hidden="true"></span>
+      </button>
+
+      <div class="navbar__backdrop" data-nav-backdrop hidden></div>
+
+      <nav id="nav-menu" class="navbar__menu" data-nav-menu aria-hidden="true">
+        <a class="navbar__link" href="#buttons">Кнопки</a>
+        <a class="navbar__link" href="#inputs">Поля ввода</a>
+        <a class="navbar__link" href="#dropdown">Dropdown</a>
+        <a class="navbar__link" href="#checks">Чекбоксы/Радио</a>
+        <a class="navbar__link" href="#cards">Карточки</a>
+        <a class="navbar__link" href="#layout">Сетки</a>
+        <a class="navbar__link" href="#bem">БЭМ</a>
+        <a class="navbar__link" href="#checklist">Чек-лист</a>
+      </nav>
+    </div>
+  </nav>
+
+  <main class="container" style="padding-block: 24px; display:grid; gap:32px;">
+    <!-- INTRO -->
+    <section id="intro">
+      <h1>UI Kit — документация</h1>
+      <p>На странице представлены базовые компоненты интерфейса и примеры их использования. Именование выполнено по БЭМ: <code>блок</code>, <code>блок__элемент</code>, <code>блок--модификатор</code>.</p>
+    </section>
+
+    <div class="hr"></div>
+
+    <!-- BUTTONS -->
+    <section id="buttons">
+      <h2>Кнопки</h2>
+      <p>Блок <code>.btn</code>. Модификаторы: <code>.btn--primary</code>, <code>.btn--secondary</code>, <code>.btn--disabled</code> (или атрибут <code>disabled</code>); размеры: <code>.btn--sm</code>, <code>.btn--md</code>, <code>.btn--lg</code>. Поддерживаются состояния hover/active/focus.</p>
+
+      <div style="display:flex; gap:12px; flex-wrap:wrap; align-items:center;">
+        <button class="btn btn--primary btn--sm">Primary sm</button>
+        <button class="btn btn--primary btn--md">Primary md</button>
+        <button class="btn btn--primary btn--lg">Primary lg</button>
+        <button class="btn btn--secondary btn--md">Secondary</button>
+        <button class="btn btn--md btn--disabled" disabled>Disabled</button>
+      </div>
+
+<pre><code>&lt;button class="btn btn--primary btn--md"&gt;Primary&lt;/button&gt;
+&lt;button class="btn btn--secondary btn--sm"&gt;Secondary sm&lt;/button&gt;
+&lt;button class="btn btn--lg" disabled&gt;Disabled&lt;/button&gt;</code></pre>
+    </section>
+
+    <!-- INPUTS -->
+    <section id="inputs">
+      <h2>Поля ввода</h2>
+      <p>Обёртка поля — блок <code>.field</code> с элементами <code>.field__label</code>, <code>.field__message</code>. Сам инпут — <code>.input</code>; модификатор ошибки — <code>.input--error</code>. Для иконки используйте обёртку <code>.input-wrapper</code> и элемент <code>.input__icon</code>, а инпуту добавьте <code>.input--with-icon</code>.</p>
+
+      <div class="grid grid--cols-2 grid--md-cols-3">
+        <label class="field">
+          <span class="field__label">Поиск</span>
+          <div class="input-wrapper">
+            <svg class="input__icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M10 18a8 8 0 1 1 5.293-14.293A8 8 0 0 1 10 18Zm11 2-6-6" stroke="currentColor" stroke-width="2"/>
+            </svg>
+            <input class="input input--with-icon" type="text" placeholder="Найти...">
+          </div>
+        </label>
+
+        <label class="field">
+          <span class="field__label">Обычное</span>
+          <input class="input" type="text" placeholder="Текст" />
+        </label>
+
+        <label class="field">
+          <span class="field__label">Ошибка</span>
+          <input class="input input--error" type="text" value="Неверное значение" />
+          <span class="field__message">Проверьте формат данных</span>
+        </label>
+      </div>
+
+<pre><code>&lt;label class="field"&gt;
+  &lt;span class="field__label"&gt;Поиск&lt;/span&gt;
+  &lt;div class="input-wrapper"&gt;
+    &lt;svg class="input__icon" ...&gt;&lt;/svg&gt;
+    &lt;input class="input input--with-icon" type="text" placeholder="Найти..."&gt;
+  &lt;/div&gt;
+&lt;/label&gt;</code></pre>
+    </section>
+
+    <!-- DROPDOWN -->
+    <section id="dropdown">
+      <h2>Dropdown</h2>
+      <p>Блок <code>.dropdown</code>; элементы: <code>.dropdown__toggle</code>, <code>.dropdown__menu</code>, <code>.dropdown__item</code>. Состояние раскрытия задаётся классом <code>.is-open</code> на корневом элементе (управляется JS).</p>
+
+      <div class="dropdown">
+        <button class="dropdown__toggle btn btn--primary" data-dropdown-toggle>Открыть меню</button>
+        <div class="dropdown__menu">
+          <a class="dropdown__item" href="#">Пункт 1</a>
+          <a class="dropdown__item" href="#">Пункт 2</a>
+          <a class="dropdown__item" href="#">Пункт 3</a>
+        </div>
+      </div>
+
+<pre><code>&lt;div class="dropdown"&gt;
+  &lt;button class="dropdown__toggle btn btn--primary" data-dropdown-toggle&gt;Открыть меню&lt;/button&gt;
+  &lt;div class="dropdown__menu"&gt;
+    &lt;a class="dropdown__item" href="#"&gt;Пункт 1&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    </section>
+
+    <!-- CHECKBOX / RADIO -->
+    <section id="checks">
+      <h2>Чекбоксы и радиокнопки</h2>
+      <p>Общий блок управления — <code>.control</code>. Элементы: скрытый инпут <code>.control__input</code>, визуальная коробка <code>.control__box</code> и отметка <code>.control__dot</code>, подпись <code>.control__label</code>. Для радио используйте модификатор блока <code>.control--radio</code>.</p>
+
+      <div style="display:flex; gap:24px; flex-wrap:wrap;">
+        <label class="control">
+          <input class="control__input" type="checkbox" checked>
+          <span class="control__box"><span class="control__dot"></span></span>
+          <span class="control__label">Согласен</span>
+        </label>
+
+        <label class="control control--radio">
+          <input class="control__input" name="r" type="radio" checked>
+          <span class="control__box"><span class="control__dot"></span></span>
+          <span class="control__label">Вариант A</span>
+        </label>
+
+        <label class="control control--radio">
+          <input class="control__input" name="r" type="radio">
+          <span class="control__box"><span class="control__dot"></span></span>
+          <span class="control__label">Вариант B</span>
+        </label>
+      </div>
+
+<pre><code>&lt;label class="control"&gt;
+  &lt;input class="control__input" type="checkbox"&gt;
+  &lt;span class="control__box"&gt;&lt;span class="control__dot"&gt;&lt;/span&gt;&lt;/span&gt;
+  &lt;span class="control__label"&gt;Согласен&lt;/span&gt;
+&lt;/label&gt;</code></pre>
+    </section>
+
+    <!-- CARDS -->
+    <section id="cards">
+      <h2>Карточки</h2>
+      <p>Блок <code>.card</code> с элементами <code>.card__img</code>, <code>.card__body</code>, <code>.card__title</code>, <code>.card__text</code>. Модификаторы: <code>.card--no-image</code> (без изображения), размеры <code>.card--sm</code>, <code>.card--md</code>, <code>.card--lg</code>.</p>
+
+      <div class="grid grid--cols-2 grid--md-cols-3">
+        <article class="card card--sm">
+          <img class="card__img" src="https://picsum.photos/400/250" alt="Пример изображения">
+          <div class="card__body">
+            <h3 class="card__title">Маленькая карточка</h3>
+            <p class="card__text">Размер small. Подходит для компактных галерей или списков.</p>
+            <button class="btn btn--primary btn--sm">Подробнее</button>
+          </div>
+        </article>
+
+        <article class="card card--md">
+          <img class="card__img" src="https://picsum.photos/600/350" alt="Пример изображения">
+          <div class="card__body">
+            <h3 class="card__title">Средняя карточка</h3>
+            <p class="card__text">Размер medium. Сбалансированный вариант для большинства страниц.</p>
+            <button class="btn btn--secondary">Подробнее</button>
+          </div>
+        </article>
+
+        <article class="card card--lg card--no-image">
+          <div class="card__body">
+            <h3 class="card__title">Большая карточка без изображения</h3>
+            <p class="card__text">Модификатор <code>.card--no-image</code> скрывает изображение. Размер large.</p>
+            <button class="btn">Действие</button>
+          </div>
+        </article>
+      </div>
+
+<pre><code>&lt;article class="card card--md"&gt;
+  &lt;img class="card__img" src="..." alt="" /&gt;
+  &lt;div class="card__body"&gt;
+    &lt;h3 class="card__title"&gt;Заголовок&lt;/h3&gt;
+    &lt;p class="card__text"&gt;Описание...&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/article&gt;</code></pre>
+    </section>
+
+    <!-- LAYOUT -->
+    <section id="layout">
+      <h2>Сетки и контейнер</h2>
+      <p><strong>Контейнер:</strong> класс <code>.container</code> центрирует контент и ограничивает ширину. <strong>Grid:</strong> используйте комбинации классов <code>.grid</code> + модификаторы колонок (<code>.grid--cols-2</code>, <code>.grid--cols-3</code>, <code>.grid--cols-4</code>) и респонсив-модификаторы (<code>.grid--md-cols-3</code>, <code>.grid--md-cols-4</code>).</p>
+
+      <div class="grid grid--cols-2 grid--md-cols-4">
+        <div class="card"><div class="card__body"><strong>1</strong> Grid item</div></div>
+        <div class="card"><div class="card__body"><strong>2</strong> Grid item</div></div>
+        <div class="card"><div class="card__body"><strong>3</strong> Grid item</div></div>
+        <div class="card"><div class="card__body"><strong>4</strong> Grid item</div></div>
+      </div>
+
+<pre><code>&lt;div class="grid grid--cols-2 grid--md-cols-4"&gt;
+  &lt;div&gt;...&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    </section>
+
+    <!-- BEM -->
+    <section id="bem">
+      <h2>Методология БЭМ</h2>
+      <p><strong>Блок</strong> — независимый компонент (напр., <code>.btn</code>, <code>.card</code>).</p>
+      <p><strong>Элемент</strong> — часть блока через <code>__</code> (напр., <code>.card__title</code>).</p>
+      <p><strong>Модификатор</strong> — вариант через <code>--</code> (напр., <code>.btn--primary</code>, <code>.card--lg</code>).</p>
+    </section>
+
+    <!-- CHECKLIST -->
+    <section id="checklist">
+      <h2>Чек-лист самопроверки</h2>
+      <div class="card">
+        <div class="card__body">
+          <table style="width:100%; border-collapse:collapse;">
+            <thead>
+              <tr>
+                <th style="text-align:left; padding:.5rem; border-bottom:1px solid var(--border, #2a3040);">Критерий</th>
+                <th style="text-align:left; padding:.5rem; border-bottom:1px solid var(--border, #2a3040);">Описание</th>
+                <th style="text-align:left; padding:.5rem; border-bottom:1px solid var(--border, #2a3040);">Отметка</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="padding:.5rem;">Функциональность компонентов</td>
+                <td style="padding:.5rem;">Все компоненты реализованы и работают корректно; состояния hover / focus / error / disabled поддерживаются.</td>
+                <td style="padding:.5rem;"><input type="checkbox" /></td>
+              </tr>
+              <tr>
+                <td style="padding:.5rem;">Качество кода</td>
+                <td style="padding:.5rem;">Используется БЭМ; SCSS-структура разделена на переменные/базу/компоненты; верстка адаптивна.</td>
+                <td style="padding:.5rem;"><input type="checkbox" /></td>
+              </tr>
+              <tr>
+                <td style="padding:.5rem;">Документация</td>
+                <td style="padding:.5rem;">Примеры использования описаны чётко и структурировано (как на этой странице).</td>
+                <td style="padding:.5rem;"><input type="checkbox" /></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="scripts/nav.js"></script>
+</body>
+</html>

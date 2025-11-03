@@ -1,0 +1,50 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.card {
+    background: $color-surface;
+    border: 1px solid $color-border;
+    border-radius: $radius-lg;
+    box-shadow: $shadow-1;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.card--sm {
+    max-width: 260px;
+}
+
+.card--md {
+    max-width: 360px;
+}
+
+.card--lg {
+    max-width: 480px;
+}
+
+
+.card__img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.card__body {
+    padding: $space-4;
+    display: grid;
+    gap: $space-2;
+}
+
+.card__title {
+    font-size: 1.125rem;
+}
+
+.card__text {
+    color: $color-muted;
+}
+
+
+.card--no-image .card__img {
+    display: none;
+}

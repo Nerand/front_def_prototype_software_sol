@@ -1,0 +1,43 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+// .dropdown — блок              элементы: __toggle, __menu, __item            состояние .is-open на .dropdown
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown__toggle {
+    /* можно оставить пустым или добавить только локальные правки */
+}
+
+/* Меню */
+.dropdown__menu {
+    position: absolute;
+    inset-block-start: calc(100% + 6px);
+    inset-inline-start: 0;
+    min-width: 200px;
+    padding: $space-2;
+    border: 1px solid $color-border;
+    border-radius: $radius-md;
+    background: $color-surface;
+    box-shadow: $shadow-2;
+    display: none;
+    z-index: 20;
+}
+
+.dropdown.is-open .dropdown__menu {
+    display: block;
+}
+
+.dropdown__item {
+    display: block;
+    padding: .5rem .625rem;
+    border-radius: $radius-sm;
+    color: $color-text;
+    text-decoration: none;
+}
+
+.dropdown__item:hover {
+    background: rgba(255, 255, 255, .04);
+}

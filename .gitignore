@@ -1,0 +1,20 @@
+# Node
+node_modules/
+npm-debug.log*
+package-lock.json
+
+# Sass cache
+.sass-cache/
+*.map
+
+# Build output
+dist/css/uikit.css.map
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Environment
+.env

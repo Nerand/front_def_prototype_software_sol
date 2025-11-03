@@ -1,0 +1,80 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+
+.navbar{
+  position: sticky; top: 0; z-index: 50;
+  background: $color-surface;
+  border-bottom: 1px solid $color-border;
+}
+
+.navbar__inner{
+  display: flex; align-items: center; justify-content: space-between;
+  gap: $space-4; padding: $space-3 0;
+}
+
+.navbar__brand{ font-weight: 700; letter-spacing: .3px; }
+
+.navbar__toggle{ display: none; } 
+.navbar__backdrop{ display: none !important; }
+
+.navbar__menu{
+  display: flex; flex-direction: row; align-items: center; gap: $space-3;
+  position: static; height: auto; width: auto; padding: 0; border: 0;
+  transform: none;
+}
+
+.navbar__link{
+  padding: .625rem .75rem; border-radius: $radius-sm;
+  color: $color-text; text-decoration: none; display: inline-flex; align-items: center;
+}
+.navbar__link:hover{ background: rgba(255,255,255,.06); }
+
+@media (max-width: 767px){
+  .navbar__toggle{
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 44px; height: 44px; border-radius: $radius-md;
+    border: 1px solid $color-border; background: transparent; cursor: pointer;
+  }
+  .navbar__toggle:focus-visible{ @include focus-ring; }
+
+  .navbar__burger{
+    width: 18px; height: 2px; background: $color-text; position: relative; display: block;
+  }
+  .navbar__burger::before, .navbar__burger::after{
+    content:""; position: absolute; inset-inline-start: 0; width: 18px; height: 2px; background: $color-text;
+  }
+  .navbar__burger::before{ transform: translateY(-6px); }
+  .navbar__burger::after{ transform: translateY(6px); }
+
+  .navbar__backdrop{
+    position: fixed; inset: 0; background: rgba(0,0,0,.4); backdrop-filter: blur(1px);
+    display: none;
+  }
+
+  .navbar__menu{
+    position: fixed;
+    inset-block-start: 0; inset-inline-end: 0;
+    width: min(88vw, 340px);
+    height: 100dvh;
+    padding: $space-6 $space-4;
+    display: flex; flex-direction: column; gap: $space-2;
+    background: $color-surface;
+    border-inline-start: 1px solid $color-border;
+    transform: translateX(100%); 
+    transition: transform .2s ease;
+  }
+
+  body.nav-open{ overflow: hidden; }
+  body.nav-open .navbar__menu{ transform: translateX(0); }
+  body.nav-open .navbar__backdrop{ display: block; }
+  body.nav-open .navbar__toggle[aria-expanded="true"] .navbar__burger{
+    background: transparent;
+  }
+  body.nav-open .navbar__toggle[aria-expanded="true"] .navbar__burger::before{
+    transform: rotate(45deg);
+  }
+  body.nav-open .navbar__toggle[aria-expanded="true"] .navbar__burger::after{
+    transform: rotate(-45deg);
+  }
+}
